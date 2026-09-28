@@ -872,11 +872,11 @@ inline void PikiPanicState::checkDemo(Piki* piki)
 		if (mDemoWaitTime <= 0.0f) {
 			playData->setDemoFlag(flag);
 
-			MoviePlayArg playArg("x16_hiba", nullptr, nullptr, 0);
-			playArg.mOrigin            = piki->getPosition();
-			playArg.mAngle             = piki->getFaceDir();
-			moviePlayer->mTargetObject = piki;
-			moviePlayer->play(playArg);
+			// MoviePlayArg playArg("x16_hiba", nullptr, nullptr, 0);
+			// playArg.mOrigin            = piki->getPosition();
+			// playArg.mAngle             = piki->getFaceDir();
+			// moviePlayer->mTargetObject = piki;
+			// moviePlayer->play(playArg);
 		}
 	}
 }
@@ -5179,10 +5179,10 @@ void PikiGrowupState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& event)
 
 			if (gameSystem->isFlag(GAMESYS_IsGameWorldActive) && !playData->isDemoFlag(DEMO_First_Nectar_Use)) {
 				if (moviePlayer) {
-					MoviePlayArg movieArg("g34_yellow_extract", nullptr, nullptr, 0);
-					movieArg.setTarget(piki);
-					moviePlayer->mTargetObject = piki;
-					moviePlayer->play(movieArg);
+					// MoviePlayArg movieArg("g34_yellow_extract", nullptr, nullptr, 0);
+					// movieArg.setTarget(piki);
+					// moviePlayer->mTargetObject = piki;
+					// moviePlayer->play(movieArg);
 				}
 
 				playData->setDemoFlag(DEMO_First_Nectar_Use);

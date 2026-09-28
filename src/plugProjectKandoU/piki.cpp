@@ -1130,10 +1130,10 @@ bool Piki::startDope(int isDoped)
 
 		if (gameSystem->isFlag(GAMESYS_IsGameWorldActive) && !playData->isDemoFlag(DEMO_First_Spicy_Use)) {
 			if (moviePlayer) {
-				MoviePlayArg movieArg("g1A_red_doping", nullptr, nullptr, 0);
-				movieArg.setTarget(this);
-				moviePlayer->mTargetObject = this;
-				moviePlayer->play(movieArg);
+				// MoviePlayArg movieArg("g1A_red_doping", nullptr, nullptr, 0);
+				// movieArg.setTarget(this);
+				// moviePlayer->mTargetObject = this;
+				// moviePlayer->play(movieArg);
 			}
 			playData->setDemoFlag(DEMO_First_Spicy_Use);
 		}

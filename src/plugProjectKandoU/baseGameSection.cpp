@@ -1080,12 +1080,12 @@ void BaseGameSection::onCameraBlendFinished(CameraArg* arg)
 	setCamController();
 	if (gameSystem->isStoryMode()) {
 		if (!playData->isDemoFlag(DEMO_First_Use_Louie) && playData->isDemoFlag(DEMO_Unlock_Captain_Switch)) {
-			Navi* louie = naviMgr->getAt(NAVIID_Louie);
-			JUT_ASSERTLINE(3088, louie, "louie null");
-			MoviePlayArg louieStart("x05_louiestart", nullptr, nullptr, 0);
-			louieStart.setTarget(louie);
-			moviePlayer->mTargetObject = louie;
-			moviePlayer->play(louieStart);
+			// Navi* louie = naviMgr->getAt(NAVIID_Louie);
+			// JUT_ASSERTLINE(3088, louie, "louie null");
+			// MoviePlayArg louieStart("x05_louiestart", nullptr, nullptr, 0);
+			// louieStart.setTarget(louie);
+			// moviePlayer->mTargetObject = louie;
+			// moviePlayer->play(louieStart);
 			playData->setDemoFlag(DEMO_First_Use_Louie);
 		}
 	}

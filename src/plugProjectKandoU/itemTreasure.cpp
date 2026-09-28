@@ -71,20 +71,20 @@ void NormalState::onDamage(Item* item, f32 damage)
 		// if fully buried, do the whole Whites Can See Buried Things cutscene
 		if (max == depth) {
 			playData->setDemoFlag(DEMO_Whites_Digging);
-			MoviePlayArg arg("x14_white_dig", nullptr, nullptr, 0);
-			Iterator<Piki> itPiki(pikiMgr);
-			CI_LOOP(itPiki)
-			{
-				Piki* piki = *itPiki;
-				if (piki->getKind() == White) {
-					piki->movie_begin(false);
-				}
-			}
-			item->movie_begin(false);
-			arg.mOrigin                = item->mPellet->getPosition();
-			arg.mAngle                 = item->mPellet->getFaceDir();
-			moviePlayer->mTargetObject = item->mPellet;
-			moviePlayer->play(arg);
+			// MoviePlayArg arg("x14_white_dig", nullptr, nullptr, 0);
+			// Iterator<Piki> itPiki(pikiMgr);
+			// CI_LOOP(itPiki)
+			// {
+			// 	Piki* piki = *itPiki;
+			// 	if (piki->getKind() == White) {
+			// 		piki->movie_begin(false);
+			// 	}
+			// }
+			// item->movie_begin(false);
+			// arg.mOrigin                = item->mPellet->getPosition();
+			// arg.mAngle                 = item->mPellet->getFaceDir();
+			// moviePlayer->mTargetObject = item->mPellet;
+			// moviePlayer->play(arg);
 		}
 	}
 

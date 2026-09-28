@@ -592,54 +592,54 @@ void SingleGameSection::playMovie_helloPikmin(Piki* piki)
 {
 	switch (piki->mPikiKind) {
 	case Red: {
-		MoviePlayArg arg("g03_meet_redpikmin", nullptr, mMovieFinishCallback, 0);
-		Onyon* onyon = ItemOnyon::mgr->getOnyon(ONYON_TYPE_RED);
-		JUT_ASSERTLINE(1481, onyon, "No RED ONYON");
-		arg.mOrigin                = onyon->getPosition();
-		arg.mAngle                 = onyon->getFaceDir();
-		moviePlayer->mTargetObject = piki;
-		moviePlayer->play(arg);
+		// MoviePlayArg arg("g03_meet_redpikmin", nullptr, mMovieFinishCallback, 0);
+		// Onyon* onyon = ItemOnyon::mgr->getOnyon(ONYON_TYPE_RED);
+		// JUT_ASSERTLINE(1481, onyon, "No RED ONYON");
+		// arg.mOrigin                = onyon->getPosition();
+		// arg.mAngle                 = onyon->getFaceDir();
+		// moviePlayer->mTargetObject = piki;
+		// moviePlayer->play(arg);
 		playData->setMeetPikmin(piki->mPikiKind);
 		playData->setContainer(piki->mPikiKind);
 		disableTimer(DEMOTIMER_Piki_Seed_In_Ground);
 		break;
 	}
 	case Yellow: {
-		MoviePlayArg arg("g1F_meet_yellowpikmin", nullptr, mMovieFinishCallback, 0);
-		arg.mOrigin                = piki->getPosition();
-		arg.mAngle                 = piki->getFaceDir();
-		moviePlayer->mTargetObject = piki;
-		moviePlayer->play(arg);
+		// MoviePlayArg arg("g1F_meet_yellowpikmin", nullptr, mMovieFinishCallback, 0);
+		// arg.mOrigin                = piki->getPosition();
+		// arg.mAngle                 = piki->getFaceDir();
+		// moviePlayer->mTargetObject = piki;
+		// moviePlayer->play(arg);
 		playData->setMeetPikmin(piki->mPikiKind);
 		playData->setContainer(piki->mPikiKind);
 		break;
 	}
 	case Blue: {
-		MoviePlayArg arg("g21_meet_bluepikmin", nullptr, mMovieFinishCallback, 0);
-		arg.mOrigin                = piki->getPosition();
-		arg.mAngle                 = piki->getFaceDir();
-		moviePlayer->mTargetObject = piki;
-		moviePlayer->play(arg);
+		// MoviePlayArg arg("g21_meet_bluepikmin", nullptr, mMovieFinishCallback, 0);
+		// arg.mOrigin                = piki->getPosition();
+		// arg.mAngle                 = piki->getFaceDir();
+		// moviePlayer->mTargetObject = piki;
+		// moviePlayer->play(arg);
 		playData->setMeetPikmin(piki->mPikiKind);
 		playData->setContainer(piki->mPikiKind);
 		break;
 	}
 	case Purple: {
-		MoviePlayArg arg("g24_meet_blackpikmin", nullptr, mMovieFinishCallback, 0);
-		arg.mOrigin                = piki->getPosition();
-		arg.mAngle                 = piki->getFaceDir();
-		moviePlayer->mTargetObject = piki;
-		moviePlayer->play(arg);
+		// MoviePlayArg arg("g24_meet_blackpikmin", nullptr, mMovieFinishCallback, 0);
+		// arg.mOrigin                = piki->getPosition();
+		// arg.mAngle                 = piki->getFaceDir();
+		// moviePlayer->mTargetObject = piki;
+		// moviePlayer->play(arg);
 		playData->setMeetPikmin(piki->mPikiKind);
 		playData->setContainer(piki->mPikiKind);
 		break;
 	}
 	case White: {
-		MoviePlayArg arg("g27_meet_whitepikmin", nullptr, mMovieFinishCallback, 0);
-		arg.mOrigin                = piki->getPosition();
-		arg.mAngle                 = piki->getFaceDir();
-		moviePlayer->mTargetObject = piki;
-		moviePlayer->play(arg);
+		// MoviePlayArg arg("g27_meet_whitepikmin", nullptr, mMovieFinishCallback, 0);
+		// arg.mOrigin                = piki->getPosition();
+		// arg.mAngle                 = piki->getFaceDir();
+		// moviePlayer->mTargetObject = piki;
+		// moviePlayer->play(arg);
 		playData->setMeetPikmin(piki->mPikiKind);
 		playData->setContainer(piki->mPikiKind);
 		break;

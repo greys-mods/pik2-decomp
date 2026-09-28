@@ -1990,13 +1990,21 @@ void NaviNukuState::exec(Navi* navi)
 		}
 		navi->mPluckingCounter = 0;
 	} else if (!mIsFollower) {
-		if (!mDidPressA && navi->mController1->isButtonHeld(JUTGamePad::PRESS_A)) {
-			mDidPressA = true;
+		if(navi->mController1->isButtonHeld(JUTGamePad::PRESS_B)) {
+			mDidPressA = false;
 		}
-		if (mDidPressA && !navi->mController1->isButtonHeld(JUTGamePad::PRESS_A)) {
-			mIsActive = true;
-			navi->mPluckingCounter++;
-		}
+
+		// autopluck test
+		mDidPressA = true;
+		mIsActive = true;
+		navi->mPluckingCounter++;
+		// if (!mDidPressA && navi->mController1->isButtonHeld(JUTGamePad::PRESS_A)) {
+		// 	mDidPressA = true;
+		// }
+		// if (mDidPressA && !navi->mController1->isButtonHeld(JUTGamePad::PRESS_A)) {
+			// mIsActive = true;
+			// navi->mPluckingCounter++;
+		// }
 	}
 }
 

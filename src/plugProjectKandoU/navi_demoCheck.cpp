@@ -98,23 +98,23 @@ bool Navi::demoCheck()
 					// Check if the player is near the candypop bud
 					if (checkDemoNaviAndPiki(bounds)) {
 						if (budColor == White) {
-							MoviePlayArg arg("g38_find_whitepom", nullptr, nullptr, 0);
+							// MoviePlayArg arg("g38_find_whitepom", nullptr, nullptr, 0);
 
-							arg.mOrigin                = currentBud->getPosition();
-							arg.mAngle                 = currentBud->getFaceDir();
-							moviePlayer->mTargetObject = currentBud;
-							currentBud->movie_begin(false);
-							moviePlayer->play(arg);
+							// arg.mOrigin                = currentBud->getPosition();
+							// arg.mAngle                 = currentBud->getFaceDir();
+							// moviePlayer->mTargetObject = currentBud;
+							// currentBud->movie_begin(false);
+							// moviePlayer->play(arg);
 							playData->setDemoFlag(DEMO_White_Candypop);
 							return true;
 						} else {
-							MoviePlayArg arg("g39_find_blackpom", nullptr, nullptr, 0);
+							// MoviePlayArg arg("g39_find_blackpom", nullptr, nullptr, 0);
 
-							arg.mOrigin                = currentBud->getPosition();
-							arg.mAngle                 = currentBud->getFaceDir();
-							moviePlayer->mTargetObject = currentBud;
-							currentBud->movie_begin(false);
-							moviePlayer->play(arg);
+							// arg.mOrigin                = currentBud->getPosition();
+							// arg.mAngle                 = currentBud->getFaceDir();
+							// moviePlayer->mTargetObject = currentBud;
+							// currentBud->movie_begin(false);
+							// moviePlayer->play(arg);
 							playData->setDemoFlag(DEMO_Purple_Candypop);
 							return true;
 						}
@@ -137,12 +137,13 @@ bool Navi::demoCheck()
 					f32 distanceToOnion = onionPosition.distance(playerPosition);
 					if (distanceToOnion < sRedOnionTriggerSize) {
 						playData->setDemoFlag(DEMO_Louie_Finds_Red_Onion);
-						MoviePlayArg arg("x03_find_red_onyon", nullptr, gameSystem->mSection->mMovieFinishCallback, 0);
+						// don't play red onion cutscene lol
+						// MoviePlayArg arg("x03_find_red_onyon", nullptr, gameSystem->mSection->mMovieFinishCallback, 0);
 
-						arg.mOrigin                = onionPosition;
-						arg.mAngle                 = redOnion->getFaceDir();
-						moviePlayer->mTargetObject = redOnion;
-						moviePlayer->play(arg);
+						// arg.mOrigin                = onionPosition;
+						// arg.mAngle                 = redOnion->getFaceDir();
+						// moviePlayer->mTargetObject = redOnion;
+						// moviePlayer->play(arg);
 					}
 				}
 			}
@@ -157,30 +158,30 @@ bool Navi::demoCheck()
 					f32 distanceToOnion = onionPosition.distance(playerPosition);
 					if (distanceToOnion < sYellowOnionTriggerSize) {
 						playData->setDemoFlag(DEMO_Find_Yellow_Onion);
-						MoviePlayArg arg("x10_find_yellow_onyon", nullptr, nullptr, 0);
+						// MoviePlayArg arg("x10_find_yellow_onyon", nullptr, nullptr, 0);
 
 						// Find the first wild yellow pikmin for the camera to focus on
 						// (the game will crash if this runs and no yellow pikmin exist)
-						Iterator<Piki> pikiIter(pikiMgr);
-						Piki* targetPiki = nullptr;
-						CI_LOOP(pikiIter)
-						{
-							Piki* temp = *pikiIter;
-							if (temp->getKind() == Yellow) {
-								targetPiki = temp;
-								break;
-							}
-						}
+						// Iterator<Piki> pikiIter(pikiMgr);
+						// Piki* targetPiki = nullptr;
+						// CI_LOOP(pikiIter)
+						// {
+						// 	Piki* temp = *pikiIter;
+						// 	if (temp->getKind() == Yellow) {
+						// 		targetPiki = temp;
+						// 		break;
+						// 	}
+						// }
 
 // INTNS: Added this code for poor new modders wondering why they crash
 #if FOR_MODDING
 						JUT_ASSERT(targetPiki, "No yellow pikmin found for yellow onion cutscene\n");
 #endif
 
-						arg.mOrigin                = targetPiki->getPosition();
-						arg.mAngle                 = targetPiki->getFaceDir();
-						moviePlayer->mTargetObject = targetPiki;
-						moviePlayer->play(arg);
+						// arg.mOrigin                = targetPiki->getPosition();
+						// arg.mAngle                 = targetPiki->getFaceDir();
+						// moviePlayer->mTargetObject = targetPiki;
+						// moviePlayer->play(arg);
 					}
 				}
 			}
@@ -195,42 +196,42 @@ bool Navi::demoCheck()
 					f32 distanceToOnion = onionPosition.distance(playerPosition);
 					if (distanceToOnion < sBlueOnionTriggerSize) {
 						playData->setDemoFlag(DEMO_Find_Blue_Onion);
-						MoviePlayArg arg("x11_find_blue_onyon", nullptr, nullptr, 0);
+						// MoviePlayArg arg("x11_find_blue_onyon", nullptr, nullptr, 0);
 
 						// Make any Wogpoles visible in the cutscene
-						GeneralMgrIterator<EnemyBase> enemyIter(generalEnemyMgr);
-						CI_LOOP(enemyIter)
-						{
-							EnemyBase* cEnemy = enemyIter.getObject();
-							if (cEnemy->getEnemyTypeID() == EnemyTypeID::EnemyID_Tadpole) {
-								cEnemy->movie_begin(false);
-							}
-						}
+						// GeneralMgrIterator<EnemyBase> enemyIter(generalEnemyMgr);
+						// CI_LOOP(enemyIter)
+						// {
+						// 	EnemyBase* cEnemy = enemyIter.getObject();
+						// 	if (cEnemy->getEnemyTypeID() == EnemyTypeID::EnemyID_Tadpole) {
+						// 		cEnemy->movie_begin(false);
+						// 	}
+						// }
 
 						// Find the first wild blue pikmin for the camera to focus on, and makes them visible
 						// (the game will crash if this runs and no blue pikmin exist)
-						Iterator<Piki> pikiIter(pikiMgr);
-						Piki* targetPiki = nullptr;
-						CI_LOOP(pikiIter)
-						{
-							Piki* temp = *pikiIter;
-							if (temp->getKind() == Blue) {
-								targetPiki = temp;
-								targetPiki->movie_begin(false);
-							}
-						}
+						// Iterator<Piki> pikiIter(pikiMgr);
+						// Piki* targetPiki = nullptr;
+						// CI_LOOP(pikiIter)
+						// {
+						// 	Piki* temp = *pikiIter;
+						// 	if (temp->getKind() == Blue) {
+						// 		targetPiki = temp;
+						// 		targetPiki->movie_begin(false);
+						// 	}
+						// }
 
 // INTNS: Added this code for poor new modders wondering why they crash
 #if FOR_MODDING
 						JUT_ASSERT(targetPiki, "No blue pikmin found for blue onion cutscene\n");
 #endif
 
-						arg.mOrigin        = targetPiki->getPosition();
-						arg.mAngle         = targetPiki->getFaceDir();
-						arg.mSoundPosition = targetPiki->getSound_PosPtr();
+						// arg.mOrigin        = targetPiki->getPosition();
+						// arg.mAngle         = targetPiki->getFaceDir();
+						// arg.mSoundPosition = targetPiki->getSound_PosPtr();
 
-						moviePlayer->mTargetObject = targetPiki;
-						moviePlayer->play(arg);
+						// moviePlayer->mTargetObject = targetPiki;
+						// moviePlayer->play(arg);
 					}
 				}
 			}
@@ -251,15 +252,15 @@ bool Navi::demoCheck()
 					Sys::Sphere bound(pelletPosition, currentPellet->getBottomRadius() + sFirstTreasureTriggerSize);
 
 					if (checkDemoNaviAndPiki(bound)) {
-						MoviePlayArg arg("g04_find_treasure", nullptr, nullptr, 0);
+						// MoviePlayArg arg("g04_find_treasure", nullptr, nullptr, 0);
 
-						arg.mOrigin = currentPellet->getPosition();
+						// arg.mOrigin = currentPellet->getPosition();
 
-						Vector3f forwardVec;
-						currentPellet->mBaseTrMatrix.getBasis(2, forwardVec);
-						arg.mAngle                 = JMAAtan2Radian(forwardVec.x, forwardVec.z);
-						moviePlayer->mTargetObject = currentPellet;
-						moviePlayer->play(arg);
+						// Vector3f forwardVec;
+						// currentPellet->mBaseTrMatrix.getBasis(2, forwardVec);
+						// arg.mAngle                 = JMAAtan2Radian(forwardVec.x, forwardVec.z);
+						// moviePlayer->mTargetObject = currentPellet;
+						// moviePlayer->play(arg);
 						playData->setDemoFlag(DEMO_Discover_Treasure);
 						return true;
 					}
@@ -295,17 +296,17 @@ bool Navi::demoCheck()
 
 					// If there's a nearby Pikmin or Player, or the item is a special case, play the cutscene
 					if (nearObject || toSkipDistanceCheck) {
-						char moviePath[PATH_MAX];
-						sprintf(moviePath, "s16_find_item_%02d", itemIndex);
-						MoviePlayArg arg(moviePath, nullptr, nullptr, 0);
+						// char moviePath[PATH_MAX];
+						// sprintf(moviePath, "s16_find_item_%02d", itemIndex);
+						// MoviePlayArg arg(moviePath, nullptr, nullptr, 0);
 
-						arg.mOrigin = currentItem->getPosition();
+						// arg.mOrigin = currentItem->getPosition();
 
-						Vector3f forwardVec;
-						currentItem->mBaseTrMatrix.getBasis(2, forwardVec);
-						arg.mAngle                 = JMAAtan2Radian(forwardVec.x, forwardVec.z);
-						moviePlayer->mTargetObject = currentItem;
-						moviePlayer->play(arg);
+						// Vector3f forwardVec;
+						// currentItem->mBaseTrMatrix.getBasis(2, forwardVec);
+						// arg.mAngle                 = JMAAtan2Radian(forwardVec.x, forwardVec.z);
+						// moviePlayer->mTargetObject = currentItem;
+						// moviePlayer->play(arg);
 						playData->setFindItemDemoFlag(itemIndex);
 						return true;
 					}
@@ -330,15 +331,15 @@ bool Navi::demoCheck()
 					Sys::Sphere checkBounds(louiePosition, currentObject->getBottomRadius() + sLouieTreasureTriggerSize);
 
 					if (checkDemoNaviAndPiki(checkBounds)) {
-						MoviePlayArg arg("g37_get_louie", nullptr, nullptr, 0);
+						// MoviePlayArg arg("g37_get_louie", nullptr, nullptr, 0);
 
-						arg.mOrigin = currentObject->getPosition();
+						// arg.mOrigin = currentObject->getPosition();
 
-						Vector3f forwardVec;
-						currentObject->mBaseTrMatrix.getBasis(2, forwardVec);
-						arg.mAngle                 = JMAAtan2Radian(forwardVec.x, forwardVec.z);
-						moviePlayer->mTargetObject = currentObject;
-						moviePlayer->play(arg);
+						// Vector3f forwardVec;
+						// currentObject->mBaseTrMatrix.getBasis(2, forwardVec);
+						// arg.mAngle                 = JMAAtan2Radian(forwardVec.x, forwardVec.z);
+						// moviePlayer->mTargetObject = currentObject;
+						// moviePlayer->play(arg);
 						playData->setDemoFlag(DEMO_Find_Loozy_Treasure);
 						return true;
 					}
@@ -388,12 +389,12 @@ bool Navi::demoCheck()
 					}
 				}
 
-				MoviePlayArg arg(path, nullptr, nullptr, 0);
+				// MoviePlayArg arg(path, nullptr, nullptr, 0);
 				playData->setCaveVisit(levelIndex, targetCave->mCaveID);
-				arg.mOrigin                = targetCave->getPosition();
-				arg.mAngle                 = targetCave->getFaceDir();
-				moviePlayer->mTargetObject = targetCave;
-				moviePlayer->play(arg);
+				// arg.mOrigin                = targetCave->getPosition();
+				// arg.mAngle                 = targetCave->getFaceDir();
+				// moviePlayer->mTargetObject = targetCave;
+				// moviePlayer->play(arg);
 				return true;
 			}
 		}
@@ -424,11 +425,11 @@ bool Navi::demoCheck()
 
 			// If a hole was found, play the cutscene
 			if (targetHole && moviePlayer) {
-				MoviePlayArg arg("g0A_cv_find_hole", nullptr, nullptr, 0);
-				arg.mOrigin                = targetHole->getPosition();
-				arg.mAngle                 = targetHole->getFaceDir();
-				moviePlayer->mTargetObject = targetHole;
-				moviePlayer->play(arg);
+				// MoviePlayArg arg("g0A_cv_find_hole", nullptr, nullptr, 0);
+				// arg.mOrigin                = targetHole->getPosition();
+				// arg.mAngle                 = targetHole->getFaceDir();
+				// moviePlayer->mTargetObject = targetHole;
+				// moviePlayer->play(arg);
 				playData->setDemoFlag(DEMO_Find_Cave_Deeper_Hole);
 				return true;
 			}
@@ -461,11 +462,11 @@ bool Navi::demoCheck()
 
 			// If a geyser was found, play the cutscene
 			if (targetGeyser && moviePlayer) {
-				MoviePlayArg arg("g0B_cv_find_fountain", nullptr, nullptr, 0);
-				arg.mOrigin                = targetGeyser->getPosition();
-				arg.mAngle                 = targetGeyser->getFaceDir();
-				moviePlayer->mTargetObject = targetGeyser;
-				moviePlayer->play(arg);
+				// MoviePlayArg arg("g0B_cv_find_fountain", nullptr, nullptr, 0);
+				// arg.mOrigin                = targetGeyser->getPosition();
+				// arg.mAngle                 = targetGeyser->getFaceDir();
+				// moviePlayer->mTargetObject = targetGeyser;
+				// moviePlayer->play(arg);
 				playData->setDemoFlag(DEMO_Find_Cave_Geyser);
 				return true;
 			}
@@ -489,11 +490,11 @@ bool Navi::demoCheck()
 
 				// If the player is near the mold, play the cutscene
 				if (checkDemoNaviAndPiki(bounds)) {
-					MoviePlayArg arg("g19_find_rock", nullptr, nullptr, 0);
-					arg.mOrigin                = targetMold->getPosition();
-					arg.mAngle                 = targetMold->getFaceDir();
-					moviePlayer->mTargetObject = targetMold;
-					moviePlayer->play(arg);
+					// MoviePlayArg arg("g19_find_rock", nullptr, nullptr, 0);
+					// arg.mOrigin                = targetMold->getPosition();
+					// arg.mAngle                 = targetMold->getFaceDir();
+					// moviePlayer->mTargetObject = targetMold;
+					// moviePlayer->play(arg);
 					playData->setDemoFlag(DEMO_Find_Spiderwort_Mold);
 					return true;
 				}
@@ -529,11 +530,11 @@ bool Navi::demoCheck()
 
 			// If a spicy drop was found, play the cutscene
 			if (targetSpicyDrop && moviePlayer) {
-				MoviePlayArg arg("g2D_red_extract", nullptr, nullptr, 0);
-				arg.mOrigin                = targetSpicyDrop->getPosition();
-				arg.mAngle                 = targetSpicyDrop->getFaceDir();
-				moviePlayer->mTargetObject = targetSpicyDrop;
-				moviePlayer->play(arg);
+				// MoviePlayArg arg("g2D_red_extract", nullptr, nullptr, 0);
+				// arg.mOrigin                = targetSpicyDrop->getPosition();
+				// arg.mAngle                 = targetSpicyDrop->getFaceDir();
+				// moviePlayer->mTargetObject = targetSpicyDrop;
+				// moviePlayer->play(arg);
 				playData->setDemoFlag(DEMO_Find_Spicy_Drop);
 				return true;
 			}
@@ -568,11 +569,11 @@ bool Navi::demoCheck()
 
 			// If a bitter drop was found, play the cutscene
 			if (targetBitterDrop && moviePlayer) {
-				MoviePlayArg arg("g2E_black_extract", nullptr, nullptr, 0);
-				arg.mOrigin                = targetBitterDrop->getPosition();
-				arg.mAngle                 = targetBitterDrop->getFaceDir();
-				moviePlayer->mTargetObject = targetBitterDrop;
-				moviePlayer->play(arg);
+				// MoviePlayArg arg("g2E_black_extract", nullptr, nullptr, 0);
+				// arg.mOrigin                = targetBitterDrop->getPosition();
+				// arg.mAngle                 = targetBitterDrop->getFaceDir();
+				// moviePlayer->mTargetObject = targetBitterDrop;
+				// moviePlayer->play(arg);
 				playData->setDemoFlag(DEMO_Find_Bitter_Drop);
 				return true;
 			}

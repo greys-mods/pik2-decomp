@@ -138,10 +138,10 @@ void DeadState::onKeyEvent(Item* item, SysShape::KeyEvent const& event)
 {
 	WaterBox* waterbox = mapMgr->findWater(item->mBoundingSphere);
 	if (waterbox && gameSystem->isFlag(GAMESYS_IsGameWorldActive)) {
-		MoviePlayArg movieArg("x12_drain_water", nullptr, nullptr, 0);
-		movieArg.setTarget(item);
-		moviePlayer->mTargetObject = item;
-		moviePlayer->play(movieArg);
+		// MoviePlayArg movieArg("x12_drain_water", nullptr, nullptr, 0);
+		// movieArg.setTarget(item);
+		// moviePlayer->mTargetObject = item;
+		// moviePlayer->play(movieArg);
 		item->mSoundObj->startSound(PSSE_EV_WATER_OUT, 0);
 		waterbox->startDown(-100.0f);
 	}

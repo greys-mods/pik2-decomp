@@ -790,13 +790,13 @@ void DownState::onKeyEvent(Item* item, SysShape::KeyEvent const&)
 		}
 
 		if (!playData->isDemoFlag(DEMO_Reunite_Captains)) {
-			Navi* navi = naviMgr->getAt(NAVIID_Louie);
-			MoviePlayArg playArg("x06_join", nullptr, nullptr, 0);
-			playArg.mOrigin            = navi->getPosition();
-			playArg.mAngle             = navi->getFaceDir();
-			moviePlayer->mTargetObject = navi;
+			// Navi* navi = naviMgr->getAt(NAVIID_Louie);
+			// MoviePlayArg playArg("x06_join", nullptr, nullptr, 0);
+			// playArg.mOrigin            = navi->getPosition();
+			// playArg.mAngle             = navi->getFaceDir();
+			// moviePlayer->mTargetObject = navi;
 
-			moviePlayer->play(playArg);
+			// moviePlayer->play(playArg);
 
 			playData->setDemoFlag(DEMO_Reunite_Captains);
 

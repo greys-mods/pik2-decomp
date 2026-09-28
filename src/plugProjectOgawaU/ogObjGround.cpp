@@ -5,6 +5,7 @@
 #include "og/Screen/DopingScreen.h"
 #include "og/Screen/NaviLifeGauge.h"
 #include "og/Screen/PikminCounter.h"
+#include "og/Screen/TotalPokoScreen.h"
 #include "og/Screen/BloGroup.h"
 #include "trig.h"
 #include "System.h"
@@ -32,8 +33,9 @@ ObjGround::ObjGround(char const* name)
 	mLifeGauge1        = nullptr;
 	mLifeGauge2        = nullptr;
 	mPikiCounter       = nullptr;
+	mTotalPoko 		   = nullptr;
 	mSensorScreen      = nullptr;
-	mIsTotalPokoActive = false;
+	mTotalPokoActive   = false;
 	mPokos             = 0;
 	mTotalPokoTimer    = 0.0f;
 }
@@ -68,15 +70,17 @@ void ObjGround::doCreate(JKRArchive* arc)
 	mLifeGauge1   = new og::Screen::NaviLifeGauge;
 	mLifeGauge2   = new og::Screen::NaviLifeGauge;
 	mPikiCounter  = new og::Screen::PikminCounter;
+	mTotalPoko    = new og::Screen::TotalPokoScreen;
 	mSensorScreen = new P2DScreen::Mgr_tuning;
 
-	mBloGroup = new og::Screen::BloGroup(6);
+	mBloGroup = new og::Screen::BloGroup(7);
 	mBloGroup->addBlo("sun_meter.blo", mSunMeter, 0x1040000, arc);
 	mBloGroup->addBlo("doping.blo", mDoping, 0x1040000, arc);
 	mBloGroup->addBlo("orima.blo", mLifeGauge1, 0x1040000, arc);
 	mBloGroup->addBlo("orima.blo", mLifeGauge2, 0x1040000, arc);
 	mBloGroup->addBlo("gr_pikmin.blo", mPikiCounter, 0x1040000, arc);
 	mBloGroup->addBlo("sensor.blo", mSensorScreen, 0x1040000, arc);
+	mBloGroup->addBlo("grand_cave_poko.blo", mTotalPoko, 0x1040000, arc);
 
 	mSunMeter->setCallBack();
 	mDoping->setCallBack(arc);
@@ -88,8 +92,13 @@ void ObjGround::doCreate(JKRArchive* arc)
 		mLifeGauge2->setCallBack(&mDisp->mLouieData, og::Screen::CallBack_LifeGauge::LIFEGAUGE_LOUIE);
 	}
 	mPikiCounter->setCallBack(arc);
+	mTotalPoko->setCallBack(arc, msVal.mTotalPokoXPos, msVal.mTotalPokoYPos, msVal.mTotalPokoXScale, msVal.mTotalPokoYScale);
 	mPokos          = mDisp->mDataGame.mPokoCount;
-	mTotalPokoTimer = 0.0f;
+	mTotalPoko->setTotalPoko(mPokos);
+	mTotalPokoTimer                  = 0.0f;
+	mPikiCounter->mIsTotalPokoActive = false;
+	mTotalPoko->closeTotalPoko();
+	mTotalPoko->hideTotalPoko();
 
 	mOtakara = new og::Screen::OtakaraSensor;
 	mOtakara->init(mSensorScreen->search('Nhari'), mSensorScreen->search('Nsensor'), mDisp->mRadarState);
@@ -119,6 +128,35 @@ void ObjGround::commonUpdate()
 
 		} else {
 			mLifeGauge2->setType(og::Screen::CallBack_LifeGauge::LIFEGAUGE_LOUIE);
+		}
+
+		if (mTotalPokoActive) {
+			mTotalPokoTimer += sys->mDeltaTime;
+			if (mTotalPokoTimer > 2.0f) {
+				mTotalPokoActive = false;
+			}
+
+			int pokos = mDisp->mDataGame.mPokoCount;
+			if (pokos != mPokos) {
+				mPokos = pokos;
+				mTotalPoko->setTotalPoko(mPokos);
+				mTotalPokoTimer = 0.0f;
+			}
+
+		} else if (mDisp->mDataGame.mPokoCount != mPokos) {
+			mTotalPokoActive = true;
+			mPokos           = mDisp->mDataGame.mPokoCount;
+			mTotalPoko->setTotalPoko(mPokos);
+			mTotalPokoTimer = 0.0f;
+		}
+
+		if (mTotalPokoActive) {
+			mPikiCounter->mIsTotalPokoActive = true;
+			mTotalPoko->showTotalPoko();
+
+		} else {
+			mPikiCounter->mIsTotalPokoActive = false;
+			mTotalPoko->closeTotalPoko();
 		}
 	}
 

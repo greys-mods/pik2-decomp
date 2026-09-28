@@ -1185,12 +1185,12 @@ void Onyon::onKeyEvent_Onyon(SysShape::KeyEvent const& event)
 								playData->setDemoFlag(DEMO_Max_Pikmin_On_Field);
 
 								// if wild pikmin exist, play 95 pikmin CS, otherwise play 100 pikmin CS
-								char* movieName = (GameStat::zikatuPikis > 0) ? (char*)"g16_95_pikmin" : (char*)"g16_100_pikmin";
-								MoviePlayArg arg(movieName, nullptr, gameSystem->mSection->mMovieFinishCallback, 0);
-								arg.mOrigin = getPosition();
-								arg.mAngle  = getFaceDir();
-								movie_begin(0);
-								moviePlayer->play(arg);
+								// char* movieName = (GameStat::zikatuPikis > 0) ? (char*)"g16_95_pikmin" : (char*)"g16_100_pikmin";
+								// MoviePlayArg arg(movieName, nullptr, gameSystem->mSection->mMovieFinishCallback, 0);
+								// arg.mOrigin = getPosition();
+								// arg.mAngle  = getFaceDir();
+								// movie_begin(0);
+								// moviePlayer->play(arg);
 							}
 
 							mPikminType = mOnyonType;

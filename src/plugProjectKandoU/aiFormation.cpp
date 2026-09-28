@@ -147,23 +147,23 @@ void ActFormation::setFormed()
 	// if Meet Red Pikmin cutscene hasn't played, play it.
 	if (!Game::playData->isDemoFlag(Game::DEMO_Meet_Red_Pikmin)) {
 
-		Iterator<Game::Piki> iterator(Game::pikiMgr);
-		CI_LOOP(iterator)
-		{
-			Game::Piki* piki = (*iterator);
-			piki->movie_begin(false);
-		}
+		// Iterator<Game::Piki> iterator(Game::pikiMgr);
+		// CI_LOOP(iterator)
+		// {
+		// 	Game::Piki* piki = (*iterator);
+		// 	piki->movie_begin(false);
+		// }
 
-		Game::Navi* navi = Game::naviMgr->getActiveNavi();
-		P2ASSERTLINE(438, navi);
+		// Game::Navi* navi = Game::naviMgr->getActiveNavi();
+		// P2ASSERTLINE(438, navi);
 
 		Game::playData->setDemoFlag(Game::DEMO_Meet_Red_Pikmin);
 
-		Game::MoviePlayArg playArg("x02_watch_red_pikmin", nullptr, nullptr, 0);
-		playArg.setTarget(navi);
-		Game::moviePlayer->mTargetObject = navi;
+		// Game::MoviePlayArg playArg("x02_watch_red_pikmin", nullptr, nullptr, 0);
+		// playArg.setTarget(navi);
+		// Game::moviePlayer->mTargetObject = navi;
 
-		Game::moviePlayer->play(playArg);
+		// Game::moviePlayer->play(playArg);
 
 		Game::gameSystem->mSection->disableTimer(Game::DEMOTIMER_Meet_Red_Pikmin);
 	}

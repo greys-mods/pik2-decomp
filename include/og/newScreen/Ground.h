@@ -7,6 +7,7 @@
 #include "og/Screen/Data.h"
 #include "og/Screen/DispMember.h"
 #include "Screen/screenObj.h"
+#include "og/Screen/TotalPokoScreen.h"
 #include "types.h"
 
 namespace P2DScreen {
@@ -81,38 +82,43 @@ struct ObjGround : public ::Screen::ObjBase {
 	og::Screen::NaviLifeGauge* mLifeGauge1;  // _4C
 	og::Screen::NaviLifeGauge* mLifeGauge2;  // _50
 	og::Screen::PikminCounter* mPikiCounter; // _54
+	og::Screen::TotalPokoScreen* mTotalPoko;
 	P2DScreen::Mgr_tuning* mSensorScreen;    // _58
 	f32 mFadeLevel;                          // _5C
 	f32 mScale;                              // _60
-	u8 mIsTotalPokoActive;                   // _64, unused for ground
+	u8 mTotalPokoActive;                   // _64, unused for ground
 	u32 mPokos;                              // _68
 	f32 mTotalPokoTimer;                     // _6C, unused for ground
 
 	static struct StaticValues {
 		inline StaticValues()
 		{
-			mFadeinTime  = 0.3f;
-			mFadeoutTime = 0.1f;
-			_08          = -50.0f;
-			_0C          = 0.0f;
-			mSensorX     = 10.0f;
-			mSensorY     = -40.0f;
-			mSensorScale = 0.9f;
-			_24          = 0;
-			mDopingX     = 0.0f;
-			mDopingY     = -30.0f;
+			mFadeinTime       = 0.3f;
+			mFadeoutTime      = 0.1f;
+			mTotalPokoXPos    = -50.0f;
+			mTotalPokoYPos    = 0.0f;
+			mSensorX     			= 10.0f;
+			mSensorY     			= -40.0f;
+			mSensorScale 			= 0.9f;
+			_24          			= 0;
+			mDopingX     			= 0.0f;
+			mDopingY     			= -30.0f;
+			mTotalPokoXScale  = 1.0f;
+			mTotalPokoYScale  = 1.0f;
 		}
 
-		f32 mFadeinTime;  // _00
-		f32 mFadeoutTime; // _04
-		f32 _08;          // _08
-		f32 _0C;          // _0C
-		f32 mSensorX;     // _10
-		f32 mSensorY;     // _14
-		f32 mSensorScale; // _18
-		f32 mDopingX;     // _1C
-		f32 mDopingY;     // _20
-		u8 _24;           // _24
+		f32 mFadeinTime;        // _00
+		f32 mFadeoutTime;       // _04
+		f32 mTotalPokoXPos;     // _08
+		f32 mTotalPokoYPos;     // _0C
+		f32 mSensorX;     			// _10
+		f32 mSensorY;     			// _14
+		f32 mSensorScale; 			// _18
+		f32 mDopingX;     			// _1C
+		f32 mDopingY;     			// _20
+		u8 _24;           			// _24
+		f32 mTotalPokoXScale;                
+		f32 mTotalPokoYScale;                
 	} msVal;
 };
 

@@ -343,28 +343,30 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 
 				} else if (pelt->getKind() == PelletType::Treasure) {
 					// Treasure carried to the ship (assume above ground)
-					gameSystem->mSection->setDraw2DCreature(pelt);
-					BaseGameSection* section = gameSystem->mSection;
-					MoviePlayArg moviearg("s10_suck_treasure", const_cast<char*>(section->getCurrentCourseInfo()->mName),
-					                      section->mMovieFinishCallback, 0);
-					moviearg.mPelletName = pelt->mConfig->mParams.mName.mData;
-					moviePlayer->play(moviearg);
-					doPlay = true;
-
+					if(!playData->isDemoFlag(DEMO_First_Recovery)) {
+						gameSystem->mSection->setDraw2DCreature(pelt);
+						BaseGameSection* section = gameSystem->mSection;
+						MoviePlayArg moviearg("s10_suck_treasure", const_cast<char*>(section->getCurrentCourseInfo()->mName),
+						                      section->mMovieFinishCallback, 0);
+						moviearg.mPelletName = pelt->mConfig->mParams.mName.mData;
+						moviePlayer->play(moviearg);
+						playData->setDemoFlag(DEMO_First_Recovery);
+						doPlay = true;
+					}
 				} else if (pelt->getKind() == PelletType::Upgrade) {
 					// Upgrade carried to the ship (this only appears with the globe in AW normally)
 					// strangely, upgrades with an ID of 8 or more use a different theme
-					gameSystem->mSection->setDraw2DCreature(pelt);
-					BaseGameSection* section = gameSystem->mSection;
-					MoviePlayArg moviearg("s17_suck_equipment", const_cast<char*>(section->getCurrentCourseInfo()->mName),
-					                      section->mMovieFinishCallback, 0);
-					moviearg.mPelletName = pelt->mConfig->mParams.mName.mData;
-					moviearg.mStreamID   = P2_STREAM_SOUND_ID(PSSTR_EQUIP_GET);
-					if (pelt->mConfig->mParams.mIndex >= 8) {
-						moviearg.mStreamID = P2_STREAM_SOUND_ID(PSSTR_POWERUP_GET);
-					}
-					moviePlayer->play(moviearg);
-					doPlay = true;
+					// gameSystem->mSection->setDraw2DCreature(pelt);
+					// BaseGameSection* section = gameSystem->mSection;
+					// MoviePlayArg moviearg("s17_suck_equipment", const_cast<char*>(section->getCurrentCourseInfo()->mName),
+					//                       section->mMovieFinishCallback, 0);
+					// moviearg.mPelletName = pelt->mConfig->mParams.mName.mData;
+					// moviearg.mStreamID   = P2_STREAM_SOUND_ID(PSSTR_EQUIP_GET);
+					// if (pelt->mConfig->mParams.mIndex >= 8) {
+					// 	moviearg.mStreamID = P2_STREAM_SOUND_ID(PSSTR_POWERUP_GET);
+					// }
+					// moviePlayer->play(moviearg);
+					doPlay = false;
 				} else {
 					// A completely unused cutscene, in theory this would play if you carried a corpse or number pellet to the ship
 					// but even if you did, this cutscene doesnt exist in the files, so nothing happens
@@ -378,56 +380,56 @@ bool PelletGoalState::checkMovie(Pellet* pelt)
 		} else if (onyon && onyon->mOnyonType == ONYON_TYPE_POD) {
 			if (pelt->getKind() == PelletType::Treasure) {
 				// Treasure carried to the cave pod
-				gameSystem->mSection->setDraw2DCreature(pelt);
-				MoviePlayArg moviearg("s22_cv_suck_treasure", nullptr, gameSystem->mSection->mMovieFinishCallback, 0);
-				moviearg.mOrigin        = mOnyon->getPosition();
-				moviearg.mAngle         = mOnyon->getFaceDir();
-				moviearg.mDelegateStart = gameSystem->mSection->mMovieStartCallback;
-				moviearg.mDelegateEnd   = gameSystem->mSection->mMovieFinishCallback;
-				moviearg.mPelletName    = pelt->mConfig->mParams.mName.mData;
-				moviePlayer->play(moviearg);
-				doPlay = true;
+				// gameSystem->mSection->setDraw2DCreature(pelt);
+				// MoviePlayArg moviearg("s22_cv_suck_treasure", nullptr, gameSystem->mSection->mMovieFinishCallback, 0);
+				// moviearg.mOrigin        = mOnyon->getPosition();
+				// moviearg.mAngle         = mOnyon->getFaceDir();
+				// moviearg.mDelegateStart = gameSystem->mSection->mMovieStartCallback;
+				// moviearg.mDelegateEnd   = gameSystem->mSection->mMovieFinishCallback;
+				// moviearg.mPelletName    = pelt->mConfig->mParams.mName.mData;
+				// moviePlayer->play(moviearg);
+				doPlay = false;
 
 			} else if (pelt->getKind() == PelletType::Upgrade) {
 				// Upgrade carried to the cave pod
-				gameSystem->mSection->setDraw2DCreature(pelt);
-				BaseGameSection* section = gameSystem->mSection;
-				MoviePlayArg moviearg("s22_cv_suck_equipment", nullptr, section->mMovieFinishCallback, 0);
-				moviearg.mPelletName    = pelt->mConfig->mParams.mName.mData;
-				moviearg.mDelegateStart = section->mMovieStartCallback;
-				moviearg.mOrigin        = mOnyon->getPosition();
-				moviearg.mAngle         = mOnyon->getFaceDir();
-				moviearg.mStreamID      = P2_STREAM_SOUND_ID(PSSTR_EQUIP_GET);
-				if (pelt->mConfig->mParams.mIndex >= 8) {
-					moviearg.mStreamID = P2_STREAM_SOUND_ID(PSSTR_POWERUP_GET);
-				}
-				moviePlayer->play(moviearg);
-				doPlay = true;
+				// gameSystem->mSection->setDraw2DCreature(pelt);
+				// BaseGameSection* section = gameSystem->mSection;
+				// MoviePlayArg moviearg("s22_cv_suck_equipment", nullptr, section->mMovieFinishCallback, 0);
+				// moviearg.mPelletName    = pelt->mConfig->mParams.mName.mData;
+				// moviearg.mDelegateStart = section->mMovieStartCallback;
+				// moviearg.mOrigin        = mOnyon->getPosition();
+				// moviearg.mAngle         = mOnyon->getFaceDir();
+				// moviearg.mStreamID      = P2_STREAM_SOUND_ID(PSSTR_EQUIP_GET);
+				// if (pelt->mConfig->mParams.mIndex >= 8) {
+				// 	moviearg.mStreamID = P2_STREAM_SOUND_ID(PSSTR_POWERUP_GET);
+				// }
+				// moviePlayer->play(moviearg);
+				doPlay = false;
 
 			} else if (pelt->getKind() == PelletType::Carcass && pelt->mPelletFlag != Pellet::FLAG_NAVI_NAPSACK
 			           && !playData->isDemoFlag(DEMO_First_Corpse_In_Cave)) {
 				// first corpse collected in cave
-				playData->setDemoFlag(DEMO_First_Corpse_In_Cave);
-				BaseGameSection* section = gameSystem->mSection;
-				MoviePlayArg moviearg("x08_cv_suck_carcass", nullptr, section->mMovieFinishCallback, 0);
-				moviearg.mPelletName    = pelt->mConfig->mParams.mName.mData;
-				moviearg.mDelegateStart = section->mMovieStartCallback;
-				moviearg.mOrigin        = mOnyon->getPosition();
-				moviearg.mAngle         = mOnyon->getFaceDir();
-				moviePlayer->play(moviearg);
-				doPlay = true;
+				// playData->setDemoFlag(DEMO_First_Corpse_In_Cave);
+				// BaseGameSection* section = gameSystem->mSection;
+				// MoviePlayArg moviearg("x08_cv_suck_carcass", nullptr, section->mMovieFinishCallback, 0);
+				// moviearg.mPelletName    = pelt->mConfig->mParams.mName.mData;
+				// moviearg.mDelegateStart = section->mMovieStartCallback;
+				// moviearg.mOrigin        = mOnyon->getPosition();
+				// moviearg.mAngle         = mOnyon->getFaceDir();
+				// moviePlayer->play(moviearg);
+				doPlay = false;
 			}
 		} else if (onyon && onyon->mOnyonType <= ONYON_TYPE_YELLOW) {
 			if (pelt->getKind() == PelletType::Number && !playData->isDemoFlag(DEMO_First_Number_Pellet)) {
 				playData->setDemoFlag(DEMO_First_Number_Pellet);
 				BaseGameSection* section = gameSystem->mSection;
-				MoviePlayArg moviearg("x18_exp_pellet", nullptr, section->mMovieFinishCallback, 0);
-				moviearg.mPelletName    = pelt->mConfig->mParams.mName.mData;
-				moviearg.mDelegateStart = section->mMovieStartCallback;
-				moviearg.mOrigin        = mOnyon->getPosition();
-				moviearg.mAngle         = mOnyon->getFaceDir();
-				moviePlayer->play(moviearg);
-				doPlay = true;
+				// MoviePlayArg moviearg("x18_exp_pellet", nullptr, section->mMovieFinishCallback, 0);
+				// moviearg.mPelletName    = pelt->mConfig->mParams.mName.mData;
+				// moviearg.mDelegateStart = section->mMovieStartCallback;
+				// moviearg.mOrigin        = mOnyon->getPosition();
+				// moviearg.mAngle         = mOnyon->getFaceDir();
+				// moviePlayer->play(moviearg);
+				doPlay = false;
 			}
 		}
 	}

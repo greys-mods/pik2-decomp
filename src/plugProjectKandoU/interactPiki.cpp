@@ -74,9 +74,10 @@ bool InteractFue::actPiki(Game::Piki* piki)
 			if (navi->mNaviIndex == NAVIID_Olimar && !piki->wasZikatu()) {
 				return false;
 			}
-			if (navi->mNaviIndex == NAVIID_Louie && piki->wasZikatu()) {
-				return false;
-			}
+			// don't have wild starter piks ignore louie
+			// if (navi->mNaviIndex == NAVIID_Louie && piki->wasZikatu()) {
+			// 	return false;
+			// }
 		}
 	}
 
@@ -112,23 +113,23 @@ bool InteractFue::actPiki(Game::Piki* piki)
 				}
 			}
 			if (!playData->hasBootContainer(piki->getKind())) {
-				char* cutscenes[3] = { "g21_meet_bluepikmin", "g03_meet_redpikmin", "g1F_meet_yellowpikmin" };
-				MoviePlayArg movieArg(cutscenes[piki->getKind()], nullptr, nullptr, 0);
-				movieArg.setTarget(piki);
-				if (piki->getKind() == Red) {
-					Iterator<Piki> iPiki = pikiMgr;
-					CI_LOOP(iPiki)
-					{
-						Piki* currPiki = *iPiki;
-						if (currPiki->getKind() == piki->getKind()) {
-							currPiki->movie_begin(false);
-						}
-					}
-				}
+				// char* cutscenes[3] = { "g21_meet_bluepikmin", "g03_meet_redpikmin", "g1F_meet_yellowpikmin" };
+				// MoviePlayArg movieArg(cutscenes[piki->getKind()], nullptr, nullptr, 0);
+				// movieArg.setTarget(piki);
+				// if (piki->getKind() == Red) {
+				// 	Iterator<Piki> iPiki = pikiMgr;
+				// 	CI_LOOP(iPiki)
+				// 	{
+				// 		Piki* currPiki = *iPiki;
+				// 		if (currPiki->getKind() == piki->getKind()) {
+				// 			currPiki->movie_begin(false);
+				// 		}
+				// 	}
+				// }
 
-				moviePlayer->mTargetObject = piki;
+				// moviePlayer->mTargetObject = piki;
 				if (piki->getKind() != Red) {
-					moviePlayer->play(movieArg);
+					// moviePlayer->play(movieArg);
 					playData->setMeetPikmin(piki->getKind());
 				}
 
@@ -139,10 +140,10 @@ bool InteractFue::actPiki(Game::Piki* piki)
 		} else if (pikiKind == Bulbmin) {
 			if (gameSystem->isFlag(GAMESYS_IsGameWorldActive) && !playData->isDemoFlag(DEMO_Discover_Bulbmin)) { // broken demo likely
 				playData->setDemoFlag(DEMO_Discover_Bulbmin);
-				MoviePlayArg bulbminArg("X13_exp_leafchappy", nullptr, nullptr, 0);
-				bulbminArg.setTarget(piki);
-				moviePlayer->mTargetObject = piki;
-				moviePlayer->play(bulbminArg);
+				// MoviePlayArg bulbminArg("X13_exp_leafchappy", nullptr, nullptr, 0);
+				// bulbminArg.setTarget(piki);
+				// moviePlayer->mTargetObject = piki;
+				// moviePlayer->play(bulbminArg);
 			}
 
 		} else {
@@ -206,10 +207,10 @@ bool InteractFue::actPiki(Game::Piki* piki)
 			piki->mFsm->transit(piki, PIKISTATE_LookAt, nullptr);
 			if (piki->getKind() == Bulbmin && !playData->isDemoFlag(DEMO_Discover_Bulbmin)) {
 				playData->setDemoFlag(DEMO_Discover_Bulbmin);
-				MoviePlayArg bulbminArg("x13_exp_leafchappy", nullptr, nullptr, 0);
-				bulbminArg.setTarget(piki);
-				moviePlayer->mTargetObject = piki;
-				moviePlayer->play(bulbminArg);
+				// MoviePlayArg bulbminArg("x13_exp_leafchappy", nullptr, nullptr, 0);
+				// bulbminArg.setTarget(piki);
+				// moviePlayer->mTargetObject = piki;
+				// moviePlayer->play(bulbminArg);
 			}
 			return true;
 		}
